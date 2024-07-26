@@ -1,6 +1,8 @@
 import 'package:uuid/uuid.dart';
 
-final uuid = const Uuid();
+const uuid = Uuid();
+
+enum Category {food, travel, leisure, work}
 
 class Expense {
   Expense({
@@ -14,5 +16,5 @@ class Expense {
   final String title;
   final double amount;
   final DateTime date;
-  final String category;
+  final Category category;
 }
