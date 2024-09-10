@@ -1,4 +1,4 @@
-import 'package:expanse_tracker/widgets/expenses_list.dart';
+import 'package:expanse_tracker/widgets/expenses_list/expenses_list.dart';
 import 'package:flutter/material.dart';
 import '../models/expense.dart';
 
@@ -10,10 +10,18 @@ class Expenses extends StatefulWidget {
 }
 
 class _ExpensesState extends State<Expenses> {
-
   final List<Expense> _registeredExpenses = [
-    Expense(title: 'Flutter Course', amount: 19.99, date: DateTime.now(), category: Category.work),
-    Expense(title: 'Cinema ', amount: 15.69, date: DateTime.now(), category: Category.leisure),
+    Expense(
+        title: 'Flutter Course',
+        amount: 19.99,
+        date: DateTime.now(),
+        category: Category.work),
+    Expense(
+        title: 'Cinema ',
+        amount: 15.69,
+        date: DateTime.now(),
+        category: Category.leisure),
+    Expense(title: 'Chips', amount: 2.5, date: DateTime.now(), category: Category.food,)
   ];
 
   @override

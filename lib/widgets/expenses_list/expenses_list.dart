@@ -1,6 +1,6 @@
-import 'package:expanse_tracker/widgets/expense_item.dart';
+import 'package:expanse_tracker/widgets/expenses_list/expense_item.dart';
 import 'package:flutter/material.dart';
-import '../models/expense.dart';
+import '../../models/expense.dart';
 
 class ExpensesList extends StatelessWidget {
   const ExpensesList({super.key, required this.expenses});
