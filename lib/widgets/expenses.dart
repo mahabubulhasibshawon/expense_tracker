@@ -22,17 +22,26 @@ class _ExpensesState extends State<Expenses> {
         amount: 15.69,
         date: DateTime.now(),
         category: Category.leisure),
-    Expense(
-      title: 'Chips',
-      amount: 2.5,
-      date: DateTime.now(),
-      category: Category.food,
-    )
   ];
 
   void _openAddExpenseOverlay() {
     showModalBottomSheet(
-        context: context, builder: (ctx) => NewExpense());
+      isScrollControlled: true,
+      context: context,
+      builder: (ctx) => NewExpense(
+        onAddExpense: _addExpense,
+      ),
+    );
+  }
+
+  void _addExpense(Expense expense) {
+    setState(() {
+      _registeredExpenses.add(expense);
+    });
+  }
+
+  void _removeExpense(Expense expense) {
+    _registeredExpenses.remove(expense);
   }
 
   @override
@@ -49,7 +58,12 @@ class _ExpensesState extends State<Expenses> {
         children: [
           // toolbar with the add btn
           const Text('The chart'),
-          Expanded(child: ExpensesList(expenses: _registeredExpenses))
+          Expanded(
+            child: ExpensesList(
+              expenses: _registeredExpenses,
+              onRemoveExpense: _removeExpense,
+            ),
+          ),
         ],
       ),
     );
