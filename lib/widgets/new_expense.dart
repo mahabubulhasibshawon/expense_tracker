@@ -41,14 +41,14 @@ class _NewExpenseState extends State<NewExpense> {
         context: context,
         builder: (ctx) => AlertDialog(
           title: const Text('Invalid input'),
-          content: Text(
+          content: const Text(
               'Please make sure a valid title, amount, date and category was entered'),
           actions: [
             TextButton(
               onPressed: () {
-                Navigator.pop(context);
+                Navigator.pop(ctx);
               },
-              child: Text('Okay'),
+              child: const Text('Okay'),
             ),
           ],
         ),
@@ -76,13 +76,13 @@ class _NewExpenseState extends State<NewExpense> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(16),
+      padding: const EdgeInsets.fromLTRB(16, 48, 16, 16),
       child: Column(
         children: [
           TextField(
             controller: _titleController,
             maxLength: 50,
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
               label: Text('Title'),
             ),
           ),
@@ -92,13 +92,13 @@ class _NewExpenseState extends State<NewExpense> {
                 child: TextField(
                   controller: _amountController,
                   keyboardType: TextInputType.number,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     prefixText: '\$ ',
                     label: Text('amount'),
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 width: 16,
               ),
               Expanded(
@@ -146,11 +146,11 @@ class _NewExpenseState extends State<NewExpense> {
                 onPressed: () {
                   Navigator.pop(context);
                 },
-                child: Text('Cancle'),
+                child: const Text('Cancle'),
               ),
               ElevatedButton(
-                onPressed: () => _submitExpenseData,
-                child: Text('Save Expense'),
+                onPressed: _submitExpenseData,
+                child: const Text('Save Expense'),
               ),
             ],
           )
