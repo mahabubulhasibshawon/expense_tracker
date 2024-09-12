@@ -51,17 +51,21 @@ class _ExpensesState extends State<Expenses> {
       SnackBar(
         duration: const Duration(seconds: 3),
         content: const Text('Expense deleted.'),
-        action: SnackBarAction(label: 'Undo', onPressed: (){
-          setState(() {
-            _registeredExpenses.insert(expenseIndex, expense);
-          });
-        }),
+        action: SnackBarAction(
+            label: 'Undo',
+            onPressed: () {
+              setState(() {
+                _registeredExpenses.insert(expenseIndex, expense);
+              });
+            }),
       ),
     );
   }
 
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
+
     Widget mainContent = const Center(
       child: Text('No expenses found. Start adding some?'),
     );
@@ -72,20 +76,27 @@ class _ExpensesState extends State<Expenses> {
       );
     }
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Flutter Expense Tracker'),
-        actions: [
-          IconButton(
-              onPressed: _openAddExpenseOverlay, icon: const Icon(Icons.add))
-        ],
-      ),
-      body: Column(
-        children: [
-          // toolbar with the add btn
-          Chart(expenses: _registeredExpenses),
-          Expanded(child: mainContent),
-        ],
-      ),
-    );
+        appBar: AppBar(
+          title: const Text('Flutter Expense Tracker'),
+          actions: [
+            IconButton(
+                onPressed: _openAddExpenseOverlay, icon: const Icon(Icons.add))
+          ],
+        ),
+        body: width < 600
+            ? Column(
+                children: [
+                  // toolbar with the add btn
+                  Chart(expenses: _registeredExpenses),
+                  Expanded(child: mainContent),
+                ],
+              )
+            : Row(
+                children: [
+                  // toolbar with the add btn
+                  Expanded(child: Chart(expenses: _registeredExpenses)),
+                  Expanded(child: mainContent),
+                ],
+              ));
   }
 }
